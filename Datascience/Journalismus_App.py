@@ -615,4 +615,4 @@ def update_chart2(selected_chart2):  # Receive value from dropdown 2
         raise ValueError('Invalid chart option')
 
 if __name__ == "__main__":
-    app.run_server(jupyter_mode="external", debug=True, port=8055)  # Start the server on port 8050
+    app.run_server(jupyter_mode="external", debug=True, port=8050)  # Start the server on port 8050
