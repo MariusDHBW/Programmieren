@@ -1,30 +1,25 @@
 '''Alles zum Spielfeld'''
 
-class Spielfeld:
+anz_zeilen = 6
+anz_spalten = 7
+standartwert = '.'
+spielfeld = [[standartwert] * anz_spalten for _ in range(anz_zeilen)]
 
+class Spielfeld:
 
     def __init__(self) -> None:
         pass
 
-    def spielfeld_generieren():
-        anz_zeilen = 6
-        anz_spalten = 7
-        standartwert = 0
-        spielfeld = [[standartwert] * anz_spalten for _ in range(anz_zeilen)]
-        return spielfeld
-
-    def spielfeld_anz(spielfeld):
-        _ = 0
-        while _ < 6:
+    def spielfeld_anz():
+        for _ in range(6):
             print(spielfeld[_])
-            _ += 1
         
-    def stein_setzen(spielfeld, spieler, spalte):
+    def stein_setzen(spieler, spalte):
         zeile = 5
         while True:
-            if spielfeld[zeile] [spalte] == 0 :
+            if spielfeld[zeile] [spalte] == standartwert :
                 spielfeld[zeile] [spalte] = spieler
-                gewonnen(spielfeld, spieler, spalte, zeile)
+                gewonnen(spieler, spalte, zeile)
                 break
             elif zeile == 0:
                 print("Spalte bereits voll")
@@ -33,18 +28,28 @@ class Spielfeld:
             else:
                 zeile = zeile - 1 
 
-def gewonnen(spielfeld, spieler, spalte, zeile):
+def gewonnen(spieler, spalte, zeile):
     '''
 
     ''' 
-    try:  
-        if spielfeld[zeile][3] == spieler:    #horizontal
-            if (spielfeld[zeile][0] and spielfeld[zeile][1] and spielfeld[zeile][2]) or (spielfeld[zeile][1] and spielfeld[zeile][2] and spielfeld[zeile][4]) or (spielfeld[zeile][2] and spielfeld[zeile][4] and spielfeld[zeile][5]) or (spielfeld[zeile][4] and spielfeld[zeile][5] and spielfeld[zeile][6]) == spieler:
+    try:#vertikal prüfen        
+        if zeile < 3: 
+            if spielfeld[zeile + 3][spalte] == spieler and spielfeld[zeile + 2][spalte] == spieler and spielfeld[zeile + 1 ][spalte] == spieler:
                 print('Gewonnen')
-                
-        if zeile < 3: #vertikal prüfen
-            if spielfeld[zeile + 3][spalte] and spielfeld[zeile + 2][spalte] and spielfeld[zeile + 1 ][spalte] == spieler:
-                print('Gewonnen')
+
+        #horizontal prüfen
+        if spielfeld[zeile][3] == spieler:
+            for i in range(4):
+                if spielfeld[zeile][i] == spieler and spielfeld[zeile][i + 1] == spieler and spielfeld[zeile][i + 2] == spieler and spielfeld[zeile][i + 3] == spieler :
+                    print('Gewonnen')
+
+        #diagonal
+        for i in range(3):
+            for j in range(4):
+                if spielfeld[i][j] == spieler and spielfeld[i + 1][j + 1] == spieler and spielfeld[i + 2][j + 2] == spieler and spielfeld[i + 3][j + 3] == spieler :
+                    print('Gewonnen')
+                if spielfeld[i][6 - j] == spieler and spielfeld[i + 1][5 - j] == spieler and spielfeld[i + 2][4 - j] == spieler and spielfeld[i + 3][3 - j] == spieler :
+                    print('Gewonnen')
 
     except IndexError:
         print('Nicht in Liste')

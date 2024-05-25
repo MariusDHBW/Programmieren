@@ -10,7 +10,6 @@ class Computer:
     def __init__(self) -> None:
         pass
 
-    
-    def input(spielfeld, spieler):
+    def input(spieler):
         spalte = random.randint(0, 6)
-        sp.stein_setzen(spielfeld, spieler, spalte)
+        sp.stein_setzen(spieler, spalte)

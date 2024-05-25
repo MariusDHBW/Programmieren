@@ -8,7 +8,7 @@ def spieler_input(spieler):
     try:
         spalte = int(input(f"Spieler {spieler}: An welche Position? ")) - 1
         if 0 <= spalte <= 6:
-            sp.stein_setzen(spielfeld, spieler, spalte)
+            sp.stein_setzen(spieler, spalte)
         else: raise ValueError
 
     except ValueError:
@@ -16,12 +16,11 @@ def spieler_input(spieler):
         spieler_input(spieler)
 
 
-spielfeld = sp.spielfeld_generieren()
 while True:
     spieler = 'O'
-    sp.spielfeld_anz(spielfeld)
+    sp.spielfeld_anz()
     spieler_input(spieler)
     spieler = 'X'
-    sp.spielfeld_anz(spielfeld)
+    sp.spielfeld_anz()
     print('Spieler X:')
-    pc.input(spielfeld, spieler)
+    pc.input(spieler)
