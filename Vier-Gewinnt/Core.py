@@ -1,14 +1,6 @@
 from Computer import Computer as pc
 from Spielfeld import Spielfeld as sp
 
-spieler = 'O'
-
-def spieler_wechsel(spieler):
-    if spieler == 'X' :
-        return 'O'
-    else:
-        return 'X'
-
 def spieler_input(spieler):
     """
 
@@ -26,11 +18,10 @@ def spieler_input(spieler):
 
 spielfeld = sp.spielfeld_generieren()
 while True:
+    spieler = 'O'
     sp.spielfeld_anz(spielfeld)
     spieler_input(spieler)
-    spieler = spieler_wechsel(spieler)
+    spieler = 'X'
     sp.spielfeld_anz(spielfeld)
     print('Spieler X:')
     pc.input(spielfeld, spieler)
-    spieler = spieler_wechsel(spieler)
-    

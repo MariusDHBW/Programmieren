@@ -9,7 +9,7 @@ class Spielfeld:
     def spielfeld_generieren():
         anz_zeilen = 6
         anz_spalten = 7
-        standartwert = '.'
+        standartwert = 0
         spielfeld = [[standartwert] * anz_spalten for _ in range(anz_zeilen)]
         return spielfeld
 
@@ -22,7 +22,7 @@ class Spielfeld:
     def stein_setzen(spielfeld, spieler, spalte):
         zeile = 5
         while True:
-            if spielfeld[zeile] [spalte] == '.' :
+            if spielfeld[zeile] [spalte] == 0 :
                 spielfeld[zeile] [spalte] = spieler
                 gewonnen(spielfeld, spieler, spalte, zeile)
                 break
