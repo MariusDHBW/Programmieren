@@ -62,7 +62,7 @@ def spiel_läuft():
                 else:
                     sp.spielfeld_anz()
                     print('Spieler X:')
-                    if pc.input():
+                    if pc.input(COMPUTER):
                         running = False
                         wi.game_over_screen(COMPUTER)
                     pygame.time.wait(300)
