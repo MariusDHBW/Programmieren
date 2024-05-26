@@ -62,7 +62,7 @@ def spiel_läuft():
                 else:
                     sp.spielfeld_anz()
                     print('Spieler X:')
-                    if pc.input(COMPUTER):
+                    if pc.input():
                         running = False
                         wi.game_over_screen(COMPUTER)
                     pygame.time.wait(300)
@@ -89,7 +89,7 @@ while waiting:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 setup()
-            if event.key == pygame.K_q:
+            if event.key == pygame.K_q:         #verstehe nicht warum es wieder nicht funktioniert
                 waiting = False
 
 # Quit Pygame
