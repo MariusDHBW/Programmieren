@@ -2,6 +2,8 @@
 from Spielfeld import Spielfeld as sp
 import random
 
+COMPUTER = 'X'
+
 class Computer:
 
     '''
@@ -10,7 +12,7 @@ class Computer:
     def __init__(self) -> None:
         pass
 
-    def input(spieler):
+    def input():
         spalte = random.randint(0, 6)
-        zeile, spalte = sp.stein_setzen(spieler, spalte)
-        return zeile, spalte
+        sp.stein_setzen(COMPUTER, spalte)
+        

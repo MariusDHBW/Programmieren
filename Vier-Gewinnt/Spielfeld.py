@@ -1,14 +1,18 @@
 '''Alles zum Spielfeld'''
+from Window import Window as wi
 
 ANZ_ZEILEN = 6
 ANZ_SPALTEN = 7
 STANDARTWERT = '.'
-spielfeld = [[STANDARTWERT] * ANZ_SPALTEN for _ in range(ANZ_SPALTEN)]
 
 class Spielfeld:
 
     def __init__(self) -> None:
         pass
+
+    def setup():
+        global spielfeld
+        spielfeld = [[STANDARTWERT] * ANZ_SPALTEN for _ in range(ANZ_SPALTEN)]
 
     def spielfeld_anz():
         for _ in range(6):
@@ -20,7 +24,9 @@ class Spielfeld:
             if spielfeld[zeile] [spalte] == STANDARTWERT :
                 spielfeld[zeile] [spalte] = spieler
                 gewonnen(spieler, spalte, zeile)
-                return zeile, spalte
+                wi.update_spielfeld(spieler, zeile, spalte)
+                break
+
             elif zeile == 0:
                 print("Spalte bereits voll")
                 #spieler_input(spieler)
