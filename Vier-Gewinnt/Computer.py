@@ -5,7 +5,6 @@ import random
 COMPUTER = 'X'
 
 class Computer:
-
     '''
     
     '''

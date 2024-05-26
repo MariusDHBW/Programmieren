@@ -1,7 +1,6 @@
 import pygame
 from Computer import Computer as pc
 from Spielfeld import Spielfeld as sp
-#from Spielfeld import running
 from Window import Window as wi
 
 # Farben
