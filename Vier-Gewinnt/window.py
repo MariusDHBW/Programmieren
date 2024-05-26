@@ -25,7 +25,7 @@ player_wins, ai_wins = 0, 0
 class Window:
 
     def zeichne_spielfeld():
-        # Draw the board grid
+        ''' Zeichnet das Spielfeld '''
         pygame.draw.rect(screen, BLAU, (0, QUADRAT, ANZ_SPALTEN * QUADRAT, ANZ_ZEILEN * QUADRAT))
         for c in range(ANZ_SPALTEN):
             for r in range(ANZ_ZEILEN):
@@ -34,13 +34,16 @@ class Window:
         pygame.display.update()
 
     def update_spielfeld(spieler, zeile, spalte):
-        # Draw the player pieces
+        ''' Zeichnet den gesetzten Stein 
+        
+        
+        '''
         if spieler == PLAYER_PIECE:
             pygame.draw.circle(screen, ROT, (int(spalte * QUADRAT + QUADRAT / 2), int(zeile * QUADRAT + QUADRAT + QUADRAT / 2)), RADIUS)
         elif spieler == AI_PIECE:
             pygame.draw.circle(screen, GELB, (int(spalte * QUADRAT + QUADRAT / 2), int(zeile * QUADRAT + QUADRAT + QUADRAT / 2)), RADIUS)
 
-        pygame.display.update()  # Update the display
+        pygame.display.update()  
 
 
     def welcome_screen():

@@ -13,7 +13,7 @@ class Spielfeld:
     def __init__(self) -> None:
         pass
 
-    def setup():
+    def setup():  #Generiert das Spelfeld
         global spielfeld
         spielfeld = [[STANDARTWERT] * ANZ_SPALTEN for _ in range(ANZ_SPALTEN)]
 
@@ -21,10 +21,10 @@ class Spielfeld:
         for _ in range(6):
             print(spielfeld[_])
         
-    def stein_setzen(spieler, spalte):
+    def stein_setzen(spieler, spalte):  
         zeile = 5
-        while True:
-            if spielfeld[zeile] [spalte] == STANDARTWERT :
+        while True: #Prüft ob die Spalte noch frei ist, wenn ja setzt die den Stein
+            if spielfeld[zeile] [spalte] == STANDARTWERT :  
                 spielfeld[zeile] [spalte] = spieler
                 wi.update_spielfeld(spieler, zeile, spalte)
                 if gewonnen(spieler, spalte, zeile):
@@ -41,9 +41,7 @@ class Spielfeld:
 
 
 def gewonnen(spieler, spalte, zeile):
-    '''
 
-    ''' 
     #global running
     try:#vertikal prüfen        
         if zeile < 3: 
