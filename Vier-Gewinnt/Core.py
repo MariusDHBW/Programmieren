@@ -33,7 +33,8 @@ pygame.display.set_caption("Connect Four")
 def setup():
     wi.zeichne_spielfeld()
     sp.setup()
-    sp.spielfeld_anz() 
+    sp.spielfeld_anz()
+    spiel_läuft()     
 
 # Hauptloop
 def spiel_läuft():
@@ -70,27 +71,25 @@ def spiel_läuft():
         # Updated das Fenster nach jedem Durchgang
         pygame.display.flip()
 
+#Programm Start
+
 wi.welcome_screen()
 waiting = True
 while waiting:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
         if event.type == pygame.KEYDOWN:
-            waiting = False
+            setup()
+            break  # Exit on key press (optional)
+        if event.type == pygame.QUIT:
+            waiting = False  # Exit on window close
 
-setup()
-spiel_läuft()
-
-waiting = True
 while waiting:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
+            waiting = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 setup()
-                spiel_läuft()
             if event.key == pygame.K_q:
                 waiting = False
 

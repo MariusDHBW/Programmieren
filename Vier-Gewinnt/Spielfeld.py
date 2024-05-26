@@ -28,6 +28,7 @@ class Spielfeld:
                 spielfeld[zeile] [spalte] = spieler
                 wi.update_spielfeld(spieler, zeile, spalte)
                 if gewonnen(spieler, spalte, zeile):
+                    print('Gewonnen')
                     return True
                 break
 
@@ -46,24 +47,20 @@ def gewonnen(spieler, spalte, zeile):
     try:#vertikal prüfen        
         if zeile < 3: 
             if spielfeld[zeile + 3][spalte] == spieler and spielfeld[zeile + 2][spalte] == spieler and spielfeld[zeile + 1 ][spalte] == spieler:
-                print('Gewonnen 1')
                 return True
 
         #horizontal prüfen
         if spielfeld[zeile][3] == spieler:
             for i in range(4):
                 if spielfeld[zeile][i] == spieler and spielfeld[zeile][i + 1] == spieler and spielfeld[zeile][i + 2] == spieler and spielfeld[zeile][i + 3] == spieler :
-                    print('Gewonnen 2')
                     return True
 
         #diagonal
         for i in range(3):
             for j in range(4):
                 if spielfeld[i][j] == spieler and spielfeld[i + 1][j + 1] == spieler and spielfeld[i + 2][j + 2] == spieler and spielfeld[i + 3][j + 3] == spieler :
-                    print('Gewonnen 3')
                     return True
                 if spielfeld[i][6 - j] == spieler and spielfeld[i + 1][5 - j] == spieler and spielfeld[i + 2][4 - j] == spieler and spielfeld[i + 3][3 - j] == spieler :
-                    print('Gewonnen 4')
                     return True
 
     except IndexError:
