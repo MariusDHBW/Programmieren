@@ -1,6 +1,7 @@
 import pygame
 from Computer import Computer as pc
 from Spielfeld import Spielfeld as sp
+#from Spielfeld import running
 from Window import Window as wi
 
 # Farben
@@ -15,6 +16,7 @@ ANZ_SPALTEN = 7
 STANDARTWERT = '.'
 
 SPIELER = 'O'
+COMPUTER = 'X'
 
 # Spielfeld Fenster
 QUADRAT = 100
@@ -23,31 +25,15 @@ höhe = (ANZ_ZEILEN + 1) * QUADRAT
 größe = (breite, höhe)
 RADIUS = int(QUADRAT / 2 - 5)
 
-# Initialize Pygame
+# Initialize Pygame + Fenster erstellen
 pygame.init()
-
-# Fenster erstellen
 screen = pygame.display.set_mode(größe)
 pygame.display.set_caption("Connect Four")
-
 
 def setup():
     wi.zeichne_spielfeld()
     sp.setup()
-    sp.spielfeld_anz()
-
-    
-
-wi.welcome_screen()
-waiting = True
-while waiting:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-        if event.type == pygame.KEYDOWN:
-            waiting = False
-
-setup()
+    sp.spielfeld_anz() 
 
 # Hauptloop
 def spiel_läuft():
@@ -61,7 +47,6 @@ def spiel_läuft():
                 pygame.draw.rect(screen, SCHWARZ, (0,0, breite, QUADRAT))
                 posx = event.pos[0]
                 pygame.draw.circle(screen, ROT, (posx, int(QUADRAT/2)), RADIUS)
-
                 pygame.display.update()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -70,16 +55,44 @@ def spiel_läuft():
                 spalte = posx // QUADRAT            
                 sp.spielfeld_anz()
                 print('Spieler O:')
-                sp.stein_setzen(SPIELER, spalte)
-                sp.spielfeld_anz()
-                print('Spieler X:')
-                pc.input()
-                pygame.time.wait(300)
+                if sp.stein_setzen(SPIELER, spalte):
+                    sp.spielfeld_anz()
+                    running = False
+                    wi.game_over_screen(SPIELER)
+                else:
+                    sp.spielfeld_anz()
+                    print('Spieler X:')
+                    if pc.input():
+                        running = False
+                        wi.game_over_screen(COMPUTER)
+                    pygame.time.wait(300)
 
         # Updated das Fenster nach jedem Durchgang
         pygame.display.flip()
 
-spiel_läuft ()
+wi.welcome_screen()
+waiting = True
+while waiting:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        if event.type == pygame.KEYDOWN:
+            waiting = False
+
+setup()
+spiel_läuft()
+
+waiting = True
+while waiting:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
+                setup()
+                spiel_läuft()
+            if event.key == pygame.K_q:
+                waiting = False
 
 # Quit Pygame
 pygame.quit()

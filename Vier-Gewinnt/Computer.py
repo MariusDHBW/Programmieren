@@ -14,5 +14,6 @@ class Computer:
 
     def input():
         spalte = random.randint(0, 6)
-        sp.stein_setzen(COMPUTER, spalte)
+        if sp.stein_setzen(COMPUTER, spalte):
+            return True
         

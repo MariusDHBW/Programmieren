@@ -121,14 +121,15 @@ class Window:
         screen.blit(quit_label, quit_label_rect)
         pygame.display.update()
 
-        waiting = True
-        while waiting:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_r:
-                        #main()
-                        waiting = False
-                    if event.key == pygame.K_q:
-                        pygame.quit()
+#        waiting = True
+#        while waiting:
+#            for event in pygame.event.get():
+#                if event.type == pygame.QUIT:
+#                    pygame.quit()
+#                if event.type == pygame.KEYDOWN:
+#                    if event.key == pygame.K_r:
+#                        #main()
+#                        waiting = False
+#                    if event.key == pygame.K_q:
+#                        pygame.quit()
+#
