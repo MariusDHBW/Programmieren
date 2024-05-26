@@ -1,9 +1,6 @@
 '''Alles zum Spielfeld'''
 from Window import Window as wi
 
-#global running 
-#running = True
-
 ANZ_ZEILEN = 6
 ANZ_SPALTEN = 7
 STANDARTWERT = '.'
@@ -42,7 +39,6 @@ class Spielfeld:
 
 def gewonnen(spieler, spalte, zeile):
 
-    #global running
     try:#vertikal prüfen        
         if zeile < 3: 
             if spielfeld[zeile + 3][spalte] == spieler and spielfeld[zeile + 2][spalte] == spieler and spielfeld[zeile + 1 ][spalte] == spieler:

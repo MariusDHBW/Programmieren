@@ -78,9 +78,9 @@ while waiting:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             setup()
-            break  # Exit on key press (optional)
+            break  
         if event.type == pygame.QUIT:
-            waiting = False  # Exit on window close
+            waiting = False  
 
 while waiting:
     for event in pygame.event.get():
