@@ -4,10 +4,11 @@ import pygame
 import sys
 import math
 
-BLUE = (0,0,255)
-BLACK = (0,0,0)
-RED = (255,0,0)
-YELLOW = (255,255,0)
+BLUE = (0, 0, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+YELLOW = (255, 255, 0)
+
 ROW_COUNT = 6
 COLUMN_COUNT = 7
 
@@ -20,8 +21,9 @@ AI_PIECE = 2
 
 WINDOW_LENGTH = 4
 
+
 def create_board():
-	board = np.zeros((ROW_COUNT,COLUMN_COUNT))
+	board = np.zeros((ROW_COUNT, COLUMN_COUNT))
 	return board
 
 def drop_piece(board, row, col, piece):
@@ -51,13 +53,13 @@ def winning_move(board, piece):
 			if board[r][c] == piece and board[r+1][c] == piece and board[r+2][c] == piece and board[r+3][c] == piece:
 				return True
 
-	# Check positively sloped diaganols
+	# Check positively sloped diagonals
 	for c in range(COLUMN_COUNT-3):
 		for r in range(ROW_COUNT-3):
 			if board[r][c] == piece and board[r+1][c+1] == piece and board[r+2][c+2] == piece and board[r+3][c+3] == piece:
 				return True
 
-	# Check negatively sloped diaganols
+	# Check negatively sloped diagonals
 	for c in range(COLUMN_COUNT-3):
 		for r in range(3, ROW_COUNT):
 			if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
@@ -91,19 +93,19 @@ def score_position(board, piece):
 
 	## Score Horizontal
 	for r in range(ROW_COUNT):
-		row_array = [int(i) for i in list(board[r,:])]
+		row_array = [int(i) for i in list(board[r, :])]
 		for c in range(COLUMN_COUNT-3):
 			window = row_array[c:c+WINDOW_LENGTH]
 			score += evaluate_window(window, piece)
 
 	## Score Vertical
 	for c in range(COLUMN_COUNT):
-		col_array = [int(i) for i in list(board[:,c])]
+		col_array = [int(i) for i in list(board[:, c])]
 		for r in range(ROW_COUNT-3):
 			window = col_array[r:r+WINDOW_LENGTH]
 			score += evaluate_window(window, piece)
 
-	## Score posiive sloped diagonal
+	## Score positive sloped diagonal
 	for r in range(ROW_COUNT-3):
 		for c in range(COLUMN_COUNT-3):
 			window = [board[r+i][c+i] for i in range(WINDOW_LENGTH)]
@@ -208,10 +210,8 @@ game_over = False
 pygame.init()
 
 SQUARESIZE = 100
-
 width = COLUMN_COUNT * SQUARESIZE
-height = (ROW_COUNT+1) * SQUARESIZE
-
+height = (ROW_COUNT + 1) * SQUARESIZE
 size = (width, height)
 
 RADIUS = int(SQUARESIZE/2 - 5)
@@ -225,13 +225,12 @@ myfont = pygame.font.SysFont("monospace", 75)
 turn = random.randint(PLAYER, AI)
 
 while not game_over:
-
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			sys.exit()
 
 		if event.type == pygame.MOUSEMOTION:
-			pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
+			pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARESIZE))
 			posx = event.pos[0]
 			if turn == PLAYER:
 				pygame.draw.circle(screen, RED, (posx, int(SQUARESIZE/2)), RADIUS)
@@ -239,9 +238,7 @@ while not game_over:
 		pygame.display.update()
 
 		if event.type == pygame.MOUSEBUTTONDOWN:
-			pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
-			#print(event.pos)
-			# Ask for Player 1 Input
+			pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARESIZE))
 			if turn == PLAYER:
 				posx = event.pos[0]
 				col = int(math.floor(posx/SQUARESIZE))
@@ -252,7 +249,7 @@ while not game_over:
 
 					if winning_move(board, PLAYER_PIECE):
 						label = myfont.render("Player 1 wins!!", 1, RED)
-						screen.blit(label, (40,10))
+						screen.blit(label, (40, 10))
 						game_over = True
 
 					turn += 1
@@ -261,23 +258,17 @@ while not game_over:
 					print_board(board)
 					draw_board(board)
 
-
-	# # Ask for Player 2 Input
 	if turn == AI and not game_over:				
-
-		#col = random.randint(0, COLUMN_COUNT-1)
-		#col = pick_best_move(board, AI_PIECE)
 		col, minimax_score = minimax(board, 5, -math.inf, math.inf, True)
 
 		if is_valid_location(board, col):
-			#pygame.time.wait(500)
 			row = get_next_open_row(board, col)
 			drop_piece(board, row, col, AI_PIECE)
 
 			if winning_move(board, AI_PIECE):
 				label = myfont.render("Player 2 wins!!", 1, YELLOW)
-				screen.blit(label, (40,10))
-				game_over = True
+				screen.blit(label, (40, 10))
+				game_over = True 
 
 			print_board(board)
 			draw_board(board)

@@ -12,4 +12,5 @@ class Computer:
 
     def input(spieler):
         spalte = random.randint(0, 6)
-        sp.stein_setzen(spieler, spalte)
+        zeile, spalte = sp.stein_setzen(spieler, spalte)
+        return zeile, spalte

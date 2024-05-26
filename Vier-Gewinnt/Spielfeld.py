@@ -1,9 +1,9 @@
 '''Alles zum Spielfeld'''
 
-anz_zeilen = 6
-anz_spalten = 7
-standartwert = '.'
-spielfeld = [[standartwert] * anz_spalten for _ in range(anz_zeilen)]
+ANZ_ZEILEN = 6
+ANZ_SPALTEN = 7
+STANDARTWERT = '.'
+spielfeld = [[STANDARTWERT] * ANZ_SPALTEN for _ in range(ANZ_SPALTEN)]
 
 class Spielfeld:
 
@@ -17,10 +17,10 @@ class Spielfeld:
     def stein_setzen(spieler, spalte):
         zeile = 5
         while True:
-            if spielfeld[zeile] [spalte] == standartwert :
+            if spielfeld[zeile] [spalte] == STANDARTWERT :
                 spielfeld[zeile] [spalte] = spieler
                 gewonnen(spieler, spalte, zeile)
-                break
+                return zeile, spalte
             elif zeile == 0:
                 print("Spalte bereits voll")
                 #spieler_input(spieler)
