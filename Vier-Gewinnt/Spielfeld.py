@@ -60,16 +60,3 @@ def gewonnen(spieler, spalte, zeile):
 
     except IndexError:
         print('Nicht in Liste')
-
-
-
-
-
-
-
-
-
-
-
-
- 
