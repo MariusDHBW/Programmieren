@@ -1,0 +1,26 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "intro-to-python"
+version = "0.1.0"
+package-mode = false
+
+authors = ["Alexander Hess <alexander@webartifex.biz>"]
+description = "An intro to Python & programming for wanna-be data scientists"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+jupyterlab = "^4.1.0"
+numpy = "^1.26.0"
+
+[tool.poetry.dev-dependencies]
+# Task runners
+nox = "^2024.3.2"
+pre-commit = "^3.7.0"
+
+# Testing
+xdoctest = "^1.1.0"
